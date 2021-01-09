@@ -1,7 +1,7 @@
 package calculator;
 /**
  * represents the folk(s) ordering together
- * @author frank
+ * @author frank, Mai and Betty
  *
  */
 public class GroupMembers {
