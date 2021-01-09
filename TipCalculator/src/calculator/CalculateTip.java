@@ -1,4 +1,7 @@
 package calculator;
+
+import java.util.ArrayList;
+
 /**
  * Calculate the tip given the total amount and the number of people
  * @author frank, Mai and Betty
@@ -14,17 +17,17 @@ public class CalculateTip {
 	 */
 	public static final double taxRate = 0.065;
 	/**
-	 * represents the tip percentage that the customer is willing to give
+	 * represents the tip percentage that the members are willing to give
 	 */
 	public double tipPercent;
 	/**
-	 * represents the number of customers in the group
+	 * represents the number of member in the group
 	 */
 	public int peopleCount;
 	/**
 	 * represents each member of the group ordering together
 	 */
-	public GroupMembers member;
+	public ArrayList<GroupMembers> member;
 	
 	/**
 	 * constructor to calculate the tips in each instance
@@ -32,8 +35,9 @@ public class CalculateTip {
 	 * @param tipPercent
 	 * @param member
 	 */
-	public CalculateTip(double tipPercent) {
+	public CalculateTip(double tipPercent, GroupMembers member) {
 		this.tipPercent = tipPercent;
+		this.member = new ArrayList<GroupMembers>();
 	}
 	/**
 	 * asks the user for the total sum of the charges
