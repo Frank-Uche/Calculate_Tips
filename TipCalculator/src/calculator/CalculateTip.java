@@ -98,7 +98,7 @@ public class CalculateTip {
 		double totalBill = Math.round(totalSum * (1 + taxRate /100) + tipAmount);
 		System.out.println("Your total bill amount including tax and tip will be " + totalBill);
 		
-		// 5. Ask if the user would like to split the bill evenly
+		// 5. A7sk if the user would like to split the bill evenly
 		System.out.println("Would you like to split the check evenly? Y for Yes, N for No.");
 		String evenString = userInput.next();
 		
@@ -141,6 +141,7 @@ public class CalculateTip {
 					System.out.println("Your total adds correctly");
 				}else if (checkSum != totalBill){
 					System.out.println("Your total bill amount does not add up correctly. Please input the correct amount for individual users. ");
+					checkSum -= checkSum;
 				}else {
 					System.out.println("Enter a valid input");
 				}
