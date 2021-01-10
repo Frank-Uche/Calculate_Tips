@@ -21,6 +21,7 @@ public class CalculateTip {
 				return userInput.nextDouble();
 			}
 			catch (java.util.InputMismatchException e) {
+				
 		        userInput.nextLine();
 			}
 		}
@@ -123,36 +124,36 @@ public class CalculateTip {
 			}
 			
 			double checkSum = 0.0;
-			for (String name: groupArr) {
-				System.out.println("Please enter bill amount for " + name + ": ");
-				groupMap.put(name, userInput.nextDouble());
-				checkSum += groupMap.get(name);
-				double remainSum = totalSum - checkSum;
-				// to help user keep track of individual bill amounts
-				System.out.println("The remaining amount in your total bill is " + remainSum);
-			}
+			
 			
 			// check that the user has put in the correct amount for all group members
-			if (checkSum != totalSum) {
-				System.out.println("Your total bill amount does not add up correctly. Please input the correct amount for individual users. ");
-				checkSum = 0.0;
+			
+			while(checkSum != totalBill) {
 				for (String name: groupArr) {
 					System.out.println("Please enter bill amount for " + name + ": ");
 					groupMap.put(name, userInput.nextDouble());
 					checkSum += groupMap.get(name);
-					double remainSum = totalSum - checkSum;
+					double remainSum = totalBill - checkSum;
 					// to help user keep track of individual bill amounts
 					System.out.println("The remaining amount in your total bill is " + remainSum);
 				}
+				if(checkSum == totalBill) {
+					System.out.println("Your total adds correctly");
+				}else if (checkSum != totalBill){
+					System.out.println("Your total bill amount does not add up correctly. Please input the correct amount for individual users. ");
+				}else {
+					System.out.println("Enter a valid input");
+				}
+				
 			}
 			
 			for (String name : groupMap.keySet()) {
 				
 				double indBillAmount = groupMap.get(name);
-				double payAmount = indBillAmount + (tipAmount + taxRate * totalSum / 100) / numPeople;
+				double payAmount = Math.round(indBillAmount + (tipAmount + taxRate * totalBill / 100) / numPeople);
 				double finalTip = tipAmount * (indBillAmount / totalSum);
 				groupMap.put(name, payAmount);
-				System.out.println("The total bill amount for " + name + " is " + Math.round(payAmount) + " dollars");
+				System.out.println("The total bill amount for " + name + " is " + payAmount + " dollars");
 				System.out.println("The tip amount for " + name + " is " + finalTip + " dollars");
 				System.out.println(""); // blank line
 			}
