@@ -13,6 +13,62 @@ import java.util.TreeMap;
  */
 public class CalculateTip {
 	
+	public static double getTotalSum() {
+		Scanner userInput = new Scanner(System.in);
+		while (true) {
+			System.out.println("How much is your total bill, not including tax?");
+			try {
+				return userInput.nextDouble();
+			}
+			catch (java.util.InputMismatchException e) {
+		        userInput.nextLine();
+			}
+		}
+	}
+	
+	public static double getTaxRate() {
+		Scanner userInput = new Scanner(System.in);
+		while (true) {
+			System.out.println("What is the tax percentage of your bill? (i.e 6.25)");
+			try {
+				return userInput.nextDouble();
+			}
+			catch (java.util.InputMismatchException e) {
+		        userInput.nextLine();
+			}
+		}
+	}
+	
+	public static double getNumPeople() {
+		Scanner userInput = new Scanner(System.in);
+		while (true) {
+			System.out.println("How many people would you like to split this bill with? (including yourself)");
+			try {
+				return userInput.nextInt();
+			}
+			catch (java.util.InputMismatchException e) {
+		        userInput.nextLine();
+			}
+		}
+	}
+	
+	public static double getTipPercentage() {
+		Scanner userInput = new Scanner(System.in);
+		while (true) {
+			System.out.println("What is the tip percentage you'd like to put in? (i.e 20)");
+			try {
+				return userInput.nextDouble();
+			}
+			catch (java.util.InputMismatchException e) {
+		        userInput.nextLine();
+			}
+		}
+	}
+	
+	public static void getEvenSplit() {
+		
+	}
+	
 	/**
 	 * main method
 	 * @param args
@@ -20,23 +76,19 @@ public class CalculateTip {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to the Master Tip Calculator!");
+		Scanner userInput = new Scanner(System.in);
 		
 		// 1. Get the total sum of the bill, not including taxes
-		System.out.println("How much is your total bill, not including tax?");
-		Scanner userInput = new Scanner(System.in);
-		double totalSum = userInput.nextDouble();
+		double totalSum = getTotalSum();
 		
 		// 2. Get the tax rate 
-		System.out.println("What is the tax percentage of your bill? (i.e 6.25)");
-		double taxRate = userInput.nextDouble();
+		double taxRate = getTaxRate();
 		
 		// 3. Get the number of people to split bill with (including user)
-		System.out.println("How many people would you like to split this bill with? (including yourself)");
-		int numPeople = userInput.nextInt();
+		int numPeople = (int) getNumPeople();
 		
 		// 4. Get the tip percentage
-		System.out.println("What is the tip percentage you'd like to put in? (i.e 20)");
-		double tipPercentage = userInput.nextDouble();
+		double tipPercentage = getTipPercentage();
 		
 		// calculate the tip amount
 		double tipAmount = Math.round(totalSum * (1 + taxRate / 100) * tipPercentage/100);
@@ -56,7 +108,6 @@ public class CalculateTip {
 			System.out.println("The total bill amount for each person in your party of " + numPeople + " comes to " + payAmount + " dollars");
 		}
 		
-		// if the user says no
 		else if (evenString.equalsIgnoreCase("N")) {
 			String[] groupArr = new String[(int) numPeople];
 			TreeMap<String, Double> groupMap = new TreeMap<String, Double>();
